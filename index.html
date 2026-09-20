@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Avatar Generator</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">AI Avatar Generator</p>
+          <h1>Generate a talking avatar video</h1>
+        </div>
+      </header>
+
+      <section class="pipeline" aria-label="Workflow steps">
+        <span>Upload Image</span>
+        <span class="arrow">↓</span>
+        <span>Upload Audio</span>
+        <span class="arrow">↓</span>
+        <span>Upload Mask</span>
+        <span class="arrow">↓</span>
+        <span>Enter Motion Prompt</span>
+        <span class="arrow">↓</span>
+        <span>1080p / 31s / Realistic</span>
+        <span class="arrow">↓</span>
+        <span>Generate Video</span>
+        <span class="arrow">↓</span>
+        <span>Screen Preview MP4</span>
+        <span class="arrow">↓</span>
+        <span>Download MP4</span>
+      </section>
+
+      <main class="workspace">
+        <form id="avatarForm" class="panel form-panel">
+          <div class="upload-grid">
+            <label class="upload-card" for="imageUpload">
+              <span class="label-row">
+                <strong>Upload Image</strong>
+                <small>Required</small>
+              </span>
+              <input id="imageUpload" type="file" accept="image/*" />
+              <img id="imagePreview" alt="Uploaded avatar preview" hidden />
+            </label>
+
+            <label class="upload-card" for="audioUpload">
+              <span class="label-row">
+                <strong>Upload Audio</strong>
+                <small>Required</small>
+              </span>
+              <input id="audioUpload" type="file" accept="audio/*" />
+              <audio id="audioPreview" controls hidden></audio>
+            </label>
+
+            <label class="upload-card" for="maskUpload">
+              <span class="label-row">
+                <strong>Upload Mask</strong>
+                <small>Optional</small>
+              </span>
+              <input id="maskUpload" type="file" accept="image/*" />
+              <img id="maskPreview" alt="Optional mask preview" hidden />
+            </label>
+          </div>
+
+          <div class="prompt-row">
+            <label for="motionPrompt">Motion Prompt</label>
+            <textarea id="motionPrompt" rows="4" placeholder="Example: Turn your head slightly to the left, smile naturally, and make a confident nod while speaking."></textarea>
+          </div>
+
+          <div class="options-row">
+            <label>
+              Resolution
+              <select id="resolution">
+                <option value="1080p">1080p</option>
+                <option value="720p">720p</option>
+              </select>
+            </label>
+
+            <label>
+              Duration
+              <select id="duration">
+                <option value="31">31 seconds</option>
+                <option value="15">15 seconds</option>
+                <option value="8">8 seconds</option>
+              </select>
+            </label>
+
+            <label>
+              Style
+              <select id="style">
+                <option value="Realistic">Realistic</option>
+                <option value="Animated">Animated</option>
+                <option value="Studio">Studio</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="actions-row">
+            <button id="generateBtn" type="submit">Generate Video</button>
+            <button id="previewBtn" type="button" class="secondary" disabled>Screen Preview MP4</button>
+            <a id="downloadBtn" class="download-link" hidden download="avatar-video.mp4">Download MP4</a>
+          </div>
+        </form>
+
+        <aside class="panel preview-panel">
+          <div class="status-row">
+            <span class="dot"></span>
+            <span id="statusText">Waiting for image and audio</span>
+          </div>
+          <video id="videoPreview" controls playsinline preload="metadata" poster=""></video>
+        </aside>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
