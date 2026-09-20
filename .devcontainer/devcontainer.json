@@ -1,0 +1,12 @@
+{
+  "name": "AI Avatar Generator",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-20-bookworm",
+  "forwardPorts": [8000],
+  "portsAttributes": {
+    "8000": {
+      "label": "AI Avatar Generator",
+      "onAutoForward": "openBrowser"
+    }
+  },
+  "postCreateCommand": "python3 -m http.server 8000 --directory /workspaces/AI-Avatar-Generator >/tmp/ai-avatar-generator.log 2>&1 & echo 'Local preview: http://localhost:8000'"
+}
